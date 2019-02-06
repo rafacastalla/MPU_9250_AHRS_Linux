@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
 
 	// Initialize the mpu and power on the
 	ret &= mag.checkConnection();
-	assert(ret!=false);
+	assert(ret != false);
 
 	ret &= mag.initialize();
 	assert(ret != false);
@@ -78,31 +78,42 @@ int main(int argc, char **argv) {
 	imuraw.attachInterface(&mpu, &mpu, &mag);
 	int16_t accdata[3], gyrdata[3], magdata[3];
 
-
 	//Register SIGINT handler for managed program termination
 	register_sig_handler();
 
-	printf("Start Collecting Data\n");
-	printf("Don't move\n");
-	printf("Calculating noise average of Gyroscope\n");
+	FILE *fptr;
+	fptr = fopen("dataGyroAverage.csv", "w");
+	if (fptr != NULL) {
+		printf("Start Collecting Data\n");
+		printf("Don't move\n");
+		printf("Calculating noise average of Gyroscope\n");
 
-	int i = 0;
-	float avggyr[3] = {0, 0, 0};
-	while (!done || i < N) {
-			if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
-			//if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
+		int i = 0;
+		float avggyr[3] = { 0, 0, 0 };
+		while (!done && i < N) {
+			//if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
+			if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
 			//if (imuraw.isDataMagReady()) imuraw.getDataMagRaw(magdata);
-
+			printf("%d,%d,%d\r\n", gyrdata[0], gyrdata[1], gyrdata[2]);
 			avggyr[0] += gyrdata[0];
 			avggyr[1] += gyrdata[1];
 			avggyr[2] += gyrdata[2];
 			i++;
+			delay(1000);
+		}
+
+		printf("Finish Collecting Data!\n");
+		printf("The average of Gyroscope is: \n");
+		printf("X: %.3f\n", avggyr[0] / ((float) N));
+		printf("Y: %.3f\n", avggyr[1] / ((float) N));
+		printf("Z: %.3f\n", avggyr[2] / ((float) N));
+		printf("Data stored in dataGyroAverage.csv\n");
+		fprintf(fptr, "%.3f,%.3f,%.3f\r\n", avggyr[0] / ((float) N), avggyr[1] / ((float) N), avggyr[2] / ((float) N));
+		fclose(fptr); //fptr is the file pointer associated with file to be closed.
+	} else {
+		printf("Error open file!");
+		exit(1);
 	}
-	printf("Finish Collecting Data!\n");
-	printf("The average of Gyroscope is: \n");
-	printf("X: %.3f\n", avggyr[0]/((float)N) );
-	printf("Y: %.3f\n", avggyr[1]/((float)N) );
-	printf("Z: %.3f\n", avggyr[2]/((float)N) );
 
 	return 0;
 }

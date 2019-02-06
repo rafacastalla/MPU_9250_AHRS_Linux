@@ -84,18 +84,20 @@ int main(int argc, char **argv) {
 
 	printf("Start Collecting Data!\n");
 	FILE *fptr;
-	fptr = fopen("dataAccRaw.csv", "w");
+	fptr = fopen("dataMagRaw.csv", "w");
 	if (fptr != NULL) {
 		int i = 0;
-		while (!done || i < N) {
-				if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
+		while (!done && i < N) {
+				//if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
 				//if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
-				//if (imuraw.isDataMagReady()) imuraw.getDataMagRaw(magdata);
+				while (imuraw.isDataMagReady()) { delay(100); }
+				imuraw.getDataMagRaw(magdata);
 				fprintf(fptr, "%d,%d,%d\r\n", accdata[0], accdata[1], accdata[2]);
+				sleep_lapse(9);
 		}
 		fclose(fptr); //fptr is the file pointer associated with file to be closed.
 		printf("Finish Collecting Data!\n");
-
+		printf("Data stored in dataMagRaw.csv\n");
 	} else {
 		printf("Error open file!");
 		exit(1);
