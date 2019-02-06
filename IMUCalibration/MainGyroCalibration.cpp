@@ -87,7 +87,7 @@ int main(int argc, char **argv) {
 	printf("Calculating noise average of Gyroscope\n");
 
 	int i = 0;
-	float avggyr[3] = 0;
+	float avggyr[3] = {0, 0, 0};
 	while (!done || i < N) {
 			if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
 			//if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
