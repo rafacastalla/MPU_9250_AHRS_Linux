@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
 			//if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
 			if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
 			//if (imuraw.isDataMagReady()) imuraw.getDataMagRaw(magdata);
-			printf("%d,%d,%d\r\n", gyrdata[0], gyrdata[1], gyrdata[2]);
+			//printf("%d,%d,%d\r\n", gyrdata[0], gyrdata[1], gyrdata[2]);
 			avggyr[0] += gyrdata[0];
 			avggyr[1] += gyrdata[1];
 			avggyr[2] += gyrdata[2];
