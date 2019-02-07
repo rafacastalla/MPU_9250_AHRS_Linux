@@ -368,6 +368,8 @@
 		<configuration configurationName="calibrateAcc">
 			<resource resourceType="PROJECT" workspacePath="/IMUCalibration"/>
 		</configuration>
+		<configuration configurationName="calibrateMag"/>
+		<configuration configurationName="calibrateGyro"/>
 		<configuration configurationName="Debug">
 			<resource resourceType="PROJECT" workspacePath="/IMUSerialCalibration"/>
 		</configuration>

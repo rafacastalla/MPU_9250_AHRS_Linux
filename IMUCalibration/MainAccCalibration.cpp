@@ -20,7 +20,7 @@ void sigint_handler(int sig);
 
 int main(int argc, char **argv) {
 
-	int N = 20000;
+	int N = 10000;
 	// Auxiliar data struct
 	bool ret = true;
 
@@ -93,6 +93,8 @@ int main(int argc, char **argv) {
 				//if (imuraw.isDataMagReady()) imuraw.getDataMagRaw(magdata);
 				fprintf(fptr, "%d,%d,%d\r\n", accdata[0], accdata[1], accdata[2]);
 				delay(1000);
+				//printf("%d,%d,%d\r\n", accdata[0], accdata[1], accdata[2]);
+				i++;
 		}
 		fclose(fptr); //fptr is the file pointer associated with file to be closed.
 		printf("Finish Collecting Data!\n");
