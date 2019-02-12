@@ -20,7 +20,7 @@ void sigint_handler(int sig);
 
 int main(int argc, char **argv) {
 
-	int N = 2000;
+	int N = 10000;
 	// Auxiliar data struct
 	bool ret = true;
 

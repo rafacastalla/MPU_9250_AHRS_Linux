@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
 				while (imuraw.isDataMagReady()) { delay(100); }
 				imuraw.getDataMagRaw(magdata);
 				fprintf(fptr, "%d,%d,%d\r\n", accdata[0], accdata[1], accdata[2]);
-				delay(10000));
+				delay(10000);
 				i++;
 		}
 		fclose(fptr); //fptr is the file pointer associated with file to be closed.
