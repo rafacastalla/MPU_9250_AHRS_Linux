@@ -20,7 +20,7 @@ void sigint_handler(int sig);
 
 int main(int argc, char **argv) {
 
-	int N = 10000;
+	int N = 5000;
 	// Auxiliar data struct
 	bool ret = true;
 
@@ -90,7 +90,7 @@ int main(int argc, char **argv) {
 		while (!done && i < N) {
 				//if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
 				//if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
-				while (imuraw.isDataMagReady()) { delay(100); }
+				while (!imuraw.isDataMagReady()) { delay(100); }
 				imuraw.getDataMagRaw(magdata);
 				fprintf(fptr, "%d,%d,%d\r\n", accdata[0], accdata[1], accdata[2]);
 				delay(10000);
