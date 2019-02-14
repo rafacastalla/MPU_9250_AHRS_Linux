@@ -92,7 +92,7 @@ int main(int argc, char **argv) {
 				//if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
 				while (!imuraw.isDataMagReady()) { delay(100); }
 				imuraw.getDataMagRaw(magdata);
-				fprintf(fptr, "%d,%d,%d\r\n", accdata[0], accdata[1], accdata[2]);
+				fprintf(fptr, "%d,%d,%d\r\n", magdata[0], magdata[1], magdata[2]);
 				delay(10000);
 				i++;
 		}
