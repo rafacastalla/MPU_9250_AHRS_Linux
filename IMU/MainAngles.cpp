@@ -114,6 +114,7 @@ int main(int argc, char **argv) {
 
 	printf("Start Collecting Data!\n");
 	FILE *fptr;
+	fptr = fopen("angles.csv", "w");
 	if (fptr != NULL) {
 		int i = 0;
 
@@ -124,7 +125,7 @@ int main(int argc, char **argv) {
 
 				times[i][0] = getCurrentMicroseconds();
 
-				while (imuraw.isDataMagReady()) { delay(100); }
+				while (!imuraw.isDataMagReady()) { delay(100); }
 				imuraw.getDataMagRaw(magdata);
 				if (imuraw.isDataAccReady()) imuraw.getDataAccRaw(accdata);
 				if (imuraw.isDataGyroReady()) imuraw.getDataGyroRaw(gyrdata);
@@ -180,9 +181,7 @@ int main(int argc, char **argv) {
 
 		N = i;
 		for(i = 0; i < N; i++){
-			fprintf(fptr, "%d,%d,%d,%lld,%lld,%lld,%lld\r\n",
-					angles[i][0], angles[i][1], angles[i][2],
-					times[i][0], times[i][1], times[i][2], times[i][3]);
+			fprintf(fptr, "%f,%f,%f,%l,%l,%l,%l\r\n", angles[i][0], angles[i][1], angles[i][2], times[i][0], times[i][1], times[i][2], times[i][3]);
 		}
 
 		fclose(fptr); //fptr is the file pointer associated with file to be closed.
