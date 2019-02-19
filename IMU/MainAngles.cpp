@@ -164,10 +164,6 @@ int main(int argc, char **argv) {
 				cr = cosf(angles[i][0] * DEG2RAD);
 				sr = sinf(angles[i][0] * DEG2RAD);
 
-				magCalData[X] = 0.981  * magCalData[X] + -0.003 * magCalData[Y] + -0.027 * magCalData[Z];
-				magCalData[Y] = -0.003 * magCalData[X] + 0.981  * magCalData[Y] + 0.0032 * magCalData[Z];
-				magCalData[Z] = -0.027 * magCalData[X] + 0.0032 * magCalData[Y] + 0.96   * magCalData[Z];
-
 				mcx = magCalData[X] * cr - magCalData[Z] * sr;
 				mcy = magCalData[X] * sp * sr + magCalData[Y] * cp + magCalData[Z] * sp * cr;
 
@@ -181,7 +177,8 @@ int main(int argc, char **argv) {
 
 		N = i;
 		for(i = 0; i < N; i++){
-			fprintf(fptr, "%f,%f,%f,%l,%l,%l,%l\r\n", angles[i][0], angles[i][1], angles[i][2], times[i][0], times[i][1], times[i][2], times[i][3]);
+			fprintf(fptr, "%f,%f,%f", angles[i][0], angles[i][1], angles[i][2]);
+			fprintf(fptr, ",%ld,%ld,%ld,%ld\r\n", times[i][0], times[i][1], times[i][2], times[i][3]);
 		}
 
 		fclose(fptr); //fptr is the file pointer associated with file to be closed.
