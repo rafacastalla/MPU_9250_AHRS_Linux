@@ -1,6 +1,8 @@
 #include <iostream>
 #include <Eigen/Dense>
 
+
+
 using namespace Eigen;
 
 public test(){
@@ -16,21 +18,21 @@ public test(){
 	Matrix4d Q = Matrix<double, 4, 4>::Identity();
 	Matrix2d R = Matrix<double, 2, 2>::Identity();
 	Matrix4d  = Matrix<double, 4, 4>::Identity();
-	
+
 	Vector4d state_estimate;
 	state_estimate << 0, 0, 0, 0;
-	
+
 	double phi_hat = 0.0;
 	double theta_hat = 0.0;
-	
+
 	double phi_dot = 0.0;
 	double theta_dot = 0.0;
-	
+
 	double dt = 0.0;
-	
+
 	// Calculate angles offsets from accelerometer
 	// Depends on test to inplement
-	
+
 	while(True){
 		// Sampling time
 
@@ -76,7 +78,7 @@ public test(){
 		K = P * (C.transpose() * S.inverse());
 		state_estimate = state_estimate + K * y_tilde;
 		P = (I - K * C) * P;
-	
+
 		phi_hat = state_estimate[0];
 		theta_hat = state_estimate[2];
 	}
