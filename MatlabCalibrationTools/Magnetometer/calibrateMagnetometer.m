@@ -42,6 +42,8 @@ S = comp * S; % do compensation
 % output info
 %fprintf('const float magn_ellipsoid_center[3] = {%.6g, %.6g, %.6g};\n', e_center);
 %fprintf('const float magn_ellipsoid_transform[3][3] = {{%.6g, %.6g, %.6g}, {%.6g, %.6g, %.6g}, {%.6g, %.6g, %.6g}};\n', comp);
+fprintf('Offset = {%.6g, %.6g, %.6g};\n', e_center);
+fprintf('Scale = {{%.6g, %.6g, %.6g}, {%.6g, %.6g, %.6g}, {%.6g, %.6g, %.6g}};\n', comp);
 
 % draw ellipsoid fit
 % figure;
