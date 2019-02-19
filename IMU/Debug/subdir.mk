@@ -7,7 +7,6 @@ CPP_SRCS += \
 ../AK8963.cpp \
 ../I2C.cpp \
 ../ImuRaw.cpp \
-../KalmanRollPitch.cpp \
 ../MPU9250.cpp \
 ../MainAngles.cpp 
 
@@ -15,7 +14,6 @@ OBJS += \
 ./AK8963.o \
 ./I2C.o \
 ./ImuRaw.o \
-./KalmanRollPitch.o \
 ./MPU9250.o \
 ./MainAngles.o 
 
@@ -23,7 +21,6 @@ CPP_DEPS += \
 ./AK8963.d \
 ./I2C.d \
 ./ImuRaw.d \
-./KalmanRollPitch.d \
 ./MPU9250.d \
 ./MainAngles.d 
 
