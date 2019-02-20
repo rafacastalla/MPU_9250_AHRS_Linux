@@ -38,37 +38,37 @@ typedef struct
 } Double;
 //////////////////////////////////////////////////////////////////////////
 //transmit double precision float to my own Double
-__inline Double intToDouble(int A)
+Double intToDouble(int A)
 {
 	Double B;
 
 	B.hi = (float)A;
 	B.lo = 0.0f;
-	
+
 	return B;
 }
 //
-__inline Double floatToDouble(float A)
+Double floatToDouble(float A)
 {
 	Double B;
 
 	B.hi = A;
 	B.lo = 0.0f;
-	
+
 	return B;
 }
 //
-__inline Double doubleToDouble(double A)
+Double doubleToDouble(double A)
 {
 	Double B;
 
 	B.hi = (float)A;
 	B.lo = (float)(A - (double)B.hi);
-	
+
 	return B;
 }
 //transmit my own Double to double precision float
-__inline double DoubleTodouble(Double B)
+double DoubleTodouble(Double B)
 {
 	double A;
 
@@ -79,7 +79,7 @@ __inline double DoubleTodouble(Double B)
 }
 
 //addition: Double + Double
-__inline Double DoubleAdd(Double A, Double B)
+Double DoubleAdd(Double A, Double B)
 {
 	Double C;
 	float t1, t2, e;
@@ -97,7 +97,7 @@ __inline Double DoubleAdd(Double A, Double B)
 }
 
 //Subtraction: Double - Double
-__inline Double DoubleSub(Double A, Double B)
+Double DoubleSub(Double A, Double B)
 {
 	Double C;
 	float t1, t2, e;
@@ -115,7 +115,7 @@ __inline Double DoubleSub(Double A, Double B)
 }
 
 //multiplication: Double * Double
-__inline Double DoubleMul(Double A, Double B)
+Double DoubleMul(Double A, Double B)
 {
 	Double C;
 	float cona, conb, a1, a2, b1, b2;
@@ -149,7 +149,7 @@ __inline Double DoubleMul(Double A, Double B)
 }
 
 //divides: Double / Double
-__inline Double DoubleDiv(Double A, Double B)
+Double DoubleDiv(Double A, Double B)
 {
 	Double C;
 	float a1, a2, b1, b2, cona, conb, c11, c2, c21, e, s1, s2;
